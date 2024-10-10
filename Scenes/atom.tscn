@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://id1b0i4dbwx3"]
+
+[ext_resource type="Script" path="res://Scripts/atom.gd" id="1_wssba"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4gf56"]
+radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiqkv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_k0xew"]
+material = SubResource("StandardMaterial3D_xiqkv")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j358"]
+transparency = 1
+cull_mode = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_5wvjd"]
+material = SubResource("StandardMaterial3D_1j358")
+radius = 4.5
+height = 9.0
+radial_segments = 32
+rings = 64
+
+[node name="atom" type="RigidBody3D" groups=["grabbable", "mergeable"]]
+gravity_scale = 0.0
+script = ExtResource("1_wssba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4gf56")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_k0xew")
+
+[node name="aura" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_5wvjd")

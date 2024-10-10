@@ -1,0 +1,256 @@
+[gd_scene load_steps=29 format=3 uid="uid://cs24c6bcipuux"]
+
+[ext_resource type="Texture2D" uid="uid://d3qoet7kbkvxj" path="res://Textures/woodfloor.jpg" id="1_o1cb3"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_sier2"]
+[ext_resource type="Texture2D" uid="uid://crpj7dsr7xqyu" path="res://Textures/AllSky_Space_AnotherPlanet Equirect.png" id="2_0jun2"]
+[ext_resource type="PackedScene" uid="uid://uoq5r2lvraly" path="res://Scenes/player.tscn" id="2_1d3v8"]
+[ext_resource type="PackedScene" uid="uid://p42ftxav826i" path="res://Scenes/pause_menu.tscn" id="5_4j80j"]
+[ext_resource type="PackedScene" uid="uid://id1b0i4dbwx3" path="res://Scenes/atom.tscn" id="5_x7o8f"]
+[ext_resource type="Script" path="res://Scripts/EntityManager.gd" id="7_7ladw"]
+[ext_resource type="Script" path="res://Scripts/DocumentManager.gd" id="7_bx2qa"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0ivgh"]
+panorama = ExtResource("2_0jun2")
+
+[sub_resource type="Sky" id="Sky_i7dvd"]
+sky_material = SubResource("PanoramaSkyMaterial_0ivgh")
+radiance_size = 1
+
+[sub_resource type="Environment" id="Environment_vagyq"]
+background_mode = 2
+sky = SubResource("Sky_i7dvd")
+sky_rotation = Vector3(3.14159, 0.610865, 0)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v74qw"]
+albedo_color = Color(0.830335, 0.830335, 0.830335, 1)
+albedo_texture = ExtResource("1_o1cb3")
+albedo_texture_force_srgb = true
+metallic = 0.25
+metallic_texture_channel = 1
+roughness = 0.5
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlx3w"]
+albedo_color = Color(0.107796, 0.344801, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ngoe2"]
+material = SubResource("StandardMaterial3D_dlx3w")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4y4c6"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8yvc6"]
+material = SubResource("StandardMaterial3D_4y4c6")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdtj1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1lw8a"]
+material = SubResource("StandardMaterial3D_tdtj1")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdo67"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6xxro"]
+material = SubResource("StandardMaterial3D_mdo67")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8q45j"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gdamo"]
+material = SubResource("StandardMaterial3D_8q45j")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6ao2"]
+albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_12nxo"]
+material = SubResource("StandardMaterial3D_a6ao2")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lv0b"]
+albedo_color = Color(1, 0, 0.615686, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kcaiv"]
+material = SubResource("StandardMaterial3D_4lv0b")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sar3o"]
+albedo_color = Color(1, 0.647059, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g0hb2"]
+material = SubResource("StandardMaterial3D_sar3o")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_sier2")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.900852, -0.424295, 0.0918705, 0.142212, -0.0884743, 0.985874, -0.410173, 0.901191, 0.140042, -1883.92, 204.714, -2795.83)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_vagyq")
+
+[node name="Player" parent="World" instance=ExtResource("2_1d3v8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+
+[node name="Level" type="Node3D" parent="World"]
+
+[node name="Floor" type="Node3D" parent="World/Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="World/Level/Floor"]
+radius = 250.0
+height = 0.1
+sides = 64
+material = SubResource("StandardMaterial3D_v74qw")
+
+[node name="Spotlights" type="Node3D" parent="World/Level"]
+transform = Transform3D(11.3172, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="World/Level/Spotlights"]
+transform = Transform3D(0.088361, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0.0378598, 82.0451, -1.20378)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 1.0
+light_specular = 0.0
+spot_range = 300.0
+spot_angle = 61.5
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="World/Level/Spotlights"]
+transform = Transform3D(0.088361, 0, 0, 0, 6.5567e-08, -0.5, 0, 0.5, 6.5567e-08, 0, -76.7932, 0)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 350.0
+spot_angle = 61.5
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="World/Level/Spotlights"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 44, 176)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 200.0
+spot_angle = 61.5
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="World/Level/Spotlights"]
+transform = Transform3D(0.088361, 0, 0, 0, -0.5, -1.41561e-07, 0, 1.41561e-07, -0.5, 0, 44, -175.254)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 200.0
+spot_angle = 61.5
+
+[node name="blue_atom" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8706, 13, -9.35161)
+
+[node name="MeshInstance3D2" parent="World/Level/blue_atom" index="1"]
+mesh = SubResource("SphereMesh_ngoe2")
+
+[node name="green_atom2" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26846, 25.6803, -33.0818)
+
+[node name="MeshInstance3D2" parent="World/Level/green_atom2" index="1"]
+mesh = SubResource("SphereMesh_8yvc6")
+
+[node name="white_atom" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.105, 13.055, 18.598)
+
+[node name="MeshInstance3D2" parent="World/Level/white_atom" index="1"]
+mesh = SubResource("SphereMesh_1lw8a")
+
+[node name="yellow_atom" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.105, 4.379, 34.598)
+
+[node name="MeshInstance3D2" parent="World/Level/yellow_atom" index="1"]
+mesh = SubResource("SphereMesh_6xxro")
+
+[node name="red_atom" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.669, 23.011, -33.779)
+
+[node name="MeshInstance3D2" parent="World/Level/red_atom" index="1"]
+mesh = SubResource("SphereMesh_gdamo")
+
+[node name="green_atom" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.3307, 25.5093, 3.22114)
+
+[node name="MeshInstance3D2" parent="World/Level/green_atom" index="1"]
+mesh = SubResource("SphereMesh_12nxo")
+
+[node name="pink_atom" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3307, 5.0108, -29.7789)
+
+[node name="MeshInstance3D2" parent="World/Level/pink_atom" index="1"]
+mesh = SubResource("SphereMesh_kcaiv")
+
+[node name="orange_atom" parent="World/Level" instance=ExtResource("5_x7o8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3307, 5.0108, 14.2211)
+
+[node name="MeshInstance3D2" parent="World/Level/orange_atom" index="1"]
+mesh = SubResource("SphereMesh_g0hb2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_4j80j")]
+visible = false
+
+[node name="Label" parent="PauseMenu" index="5"]
+layout_mode = 0
+
+[node name="EntityManager" type="Node" parent="."]
+script = ExtResource("7_7ladw")
+
+[node name="DocumentManager" type="Node" parent="EntityManager"]
+script = ExtResource("7_bx2qa")
+
+[connection signal="pressed" from="PauseMenu/MainPauseMenu/VBoxContainer/BackToMainButton2" to="." method="_on_back_to_main_button_pressed"]
+
+[editable path="World/Player"]
+[editable path="World/Level/blue_atom"]
+[editable path="World/Level/green_atom2"]
+[editable path="World/Level/white_atom"]
+[editable path="World/Level/yellow_atom"]
+[editable path="World/Level/red_atom"]
+[editable path="World/Level/green_atom"]
+[editable path="World/Level/pink_atom"]
+[editable path="World/Level/orange_atom"]
+[editable path="PauseMenu"]

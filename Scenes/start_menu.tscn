@@ -1,0 +1,807 @@
+[gd_scene load_steps=53 format=3 uid="uid://bx4ga4lo23ehg"]
+
+[ext_resource type="Texture2D" uid="uid://crpj7dsr7xqyu" path="res://Textures/AllSky_Space_AnotherPlanet Equirect.png" id="1_gb17s"]
+[ext_resource type="Texture2D" uid="uid://d3qoet7kbkvxj" path="res://Textures/woodfloor.jpg" id="1_tb35t"]
+[ext_resource type="Texture2D" uid="uid://b4ldce00l8c0i" path="res://Textures/icon.svg" id="3_efe67"]
+[ext_resource type="Script" path="res://Scripts/MainMenuScript.gd" id="4_m4h4r"]
+[ext_resource type="Script" path="res://Scripts/menu_camera.gd" id="5_lsehn"]
+[ext_resource type="Script" path="res://Scripts/options_label.gd" id="6_0piwa"]
+[ext_resource type="AudioStream" uid="uid://crpv8b05gnu3i" path="res://my_guy_vivaldi_classical.mp3" id="7_qh2kd"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_glteb"]
+panorama = ExtResource("1_gb17s")
+
+[sub_resource type="Sky" id="Sky_4mhvr"]
+sky_material = SubResource("PanoramaSkyMaterial_glteb")
+process_mode = 1
+radiance_size = 4
+
+[sub_resource type="Environment" id="Environment_k2j6m"]
+background_mode = 2
+sky = SubResource("Sky_4mhvr")
+sky_rotation = Vector3(3.14159, 0.610865, 0)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ds8k5"]
+albedo_color = Color(0.830335, 0.830335, 0.830335, 1)
+albedo_texture = ExtResource("1_tb35t")
+albedo_texture_force_srgb = true
+metallic = 0.25
+metallic_texture_channel = 1
+roughness = 0.5
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_24146"]
+radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmxel"]
+albedo_color = Color(1.05888e-06, 0.408754, 0.64967, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lgjn3"]
+material = SubResource("StandardMaterial3D_qmxel")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yomoi"]
+albedo_color = Color(0, 0.681845, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pxxry"]
+material = SubResource("StandardMaterial3D_yomoi")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sj3a0"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gyi1t"]
+material = SubResource("StandardMaterial3D_sj3a0")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrysm"]
+albedo_color = Color(0.896529, 0.713264, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3e6oj"]
+material = SubResource("StandardMaterial3D_qrysm")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwvlk"]
+albedo_color = Color(0.615686, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0xmmi"]
+material = SubResource("StandardMaterial3D_xwvlk")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qftum"]
+albedo_color = Color(0.355313, 0.355314, 0.355314, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qryfx"]
+material = SubResource("StandardMaterial3D_qftum")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knvbi"]
+albedo_color = Color(0.939853, 0.10519, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7r1dg"]
+material = SubResource("StandardMaterial3D_knvbi")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3psip"]
+albedo_color = Color(0.852827, 0.39218, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_imu42"]
+material = SubResource("StandardMaterial3D_3psip")
+radius = 4.0
+height = 8.0
+radial_segments = 32
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3afd6"]
+albedo_texture = ExtResource("3_efe67")
+
+[sub_resource type="SphereMesh" id="SphereMesh_5plun"]
+material = SubResource("StandardMaterial3D_3afd6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scu2s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_nvspr"]
+material = SubResource("StandardMaterial3D_scu2s")
+radius = 0.14
+height = 0.28
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj0hy"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_03irl"]
+material = SubResource("StandardMaterial3D_cj0hy")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrpfg"]
+albedo_color = Color(0.416754, 8.48304e-07, 2.16588e-07, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1sneu"]
+material = SubResource("StandardMaterial3D_qrpfg")
+radius = 0.05
+height = 0.75
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eas64"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nown"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axwpy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bde7w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kpdn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rrfj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hrliu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oyt74"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iekjq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0wcw3"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mkab1"]
+
+[sub_resource type="Animation" id="Animation_6fc4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/MenuCamera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-52.6662, 12.2215, 52.9347)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/MenuCamera:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.20944, -0.785398, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect/MoleculeLabel:theme_override_colors/font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MainMenu:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e7glk"]
+resource_name = "camera_trans"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/MenuCamera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-52.6662, 12.2215, 52.9347), Vector3(0, 9, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/MenuCamera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.20944, -0.785398, 0), Vector3(0.785398, 1.8326, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-375, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_plhud"]
+resource_name = "fade_to_black"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/MoleculeLabel:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.23333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2), Color(1, 1, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.23333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.2), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1pw3w"]
+resource_name = "slide_out"
+length = 1.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dvhxk"]
+_data = {
+"RESET": SubResource("Animation_6fc4c"),
+"camera_trans": SubResource("Animation_e7glk"),
+"fade_to_black": SubResource("Animation_plhud"),
+"slide_out": SubResource("Animation_1pw3w")
+}
+
+[node name="StartMenu" type="CanvasLayer"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.260358, 0.0363311, 0.964828, -0.426869, 0.900654, 0.0812755, 0, 253.938, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k2j6m")
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Level" type="Node3D" parent="Background"]
+
+[node name="Floor" type="Node3D" parent="Background/Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Background/Level/Floor"]
+radius = 250.0
+height = 0.1
+material = SubResource("StandardMaterial3D_ds8k5")
+
+[node name="Spotlights" type="Node3D" parent="Background/Level"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Background/Level/Spotlights"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 102.631, 0)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 300.0
+spot_angle = 61.5
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Background/Level/Spotlights"]
+transform = Transform3D(0.5, 0, 0, 0, 6.5567e-08, -0.5, 0, 0.5, 6.5567e-08, 0, -77.4134, 0)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 300.0
+spot_angle = 61.5
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Background/Level/Spotlights"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 44, 176)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 200.0
+spot_angle = 61.5
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Background/Level/Spotlights"]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, -1.41561e-07, 0, 1.41561e-07, -0.5, 0.0696716, 44, -166.339)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 200.0
+spot_angle = 61.5
+
+[node name="blueball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8706, 13, -9.35161)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/blueball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/blueball"]
+mesh = SubResource("SphereMesh_lgjn3")
+
+[node name="greenball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26846, 25.6803, -33.0818)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/greenball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/greenball"]
+mesh = SubResource("SphereMesh_pxxry")
+
+[node name="whiteball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1051, 13.0547, 18.5985)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/whiteball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/whiteball"]
+mesh = SubResource("SphereMesh_gyi1t")
+
+[node name="yellowball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1051, 4.05473, 34.5984)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/yellowball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/yellowball"]
+mesh = SubResource("SphereMesh_3e6oj")
+
+[node name="redball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6693, 23.0108, -33.7789)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/redball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/redball"]
+mesh = SubResource("SphereMesh_0xmmi")
+
+[node name="grayball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.3307, 25.5093, 3.22114)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/grayball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/grayball"]
+mesh = SubResource("SphereMesh_qryfx")
+
+[node name="pinkball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3307, 5.0108, -29.7789)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/pinkball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/pinkball"]
+mesh = SubResource("SphereMesh_7r1dg")
+
+[node name="orangeball" type="RigidBody3D" parent="Background/Level" groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3307, 5.0108, 14.2211)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Background/Level/orangeball"]
+shape = SubResource("SphereShape3D_24146")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Level/orangeball"]
+mesh = SubResource("SphereMesh_imu42")
+
+[node name="Head" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(-2.90717, 0, 7.98739, 0, 8.5, 0, -7.98739, 0, -2.90717, 0, 8, 0.880827)
+mesh = SubResource("SphereMesh_5plun")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.343143, -0.0200642, -0.269484)
+mesh = SubResource("SphereMesh_nvspr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background/Head/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106237, 7.45058e-09, -0.0671583)
+mesh = SubResource("SphereMesh_03irl")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.345296, -0.0178761, -0.268337)
+mesh = SubResource("SphereMesh_nvspr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Head/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0246025, 7.45058e-09, -0.0671583)
+mesh = SubResource("SphereMesh_03irl")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Background/Head"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.328137)
+layers = 7
+mesh = SubResource("CapsuleMesh_1sneu")
+
+[node name="MainMenuContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("4_m4h4r")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainMenuContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="MainMenuContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1600, 900)
+render_target_update_mode = 4
+
+[node name="MenuCamera" type="Camera3D" parent="MainMenuContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.707107, 0.147016, -0.691655, 0, 0.978148, 0.207912, 0.707107, -0.147016, 0.691655, -52.6662, 12.2215, 52.9347)
+near = 0.001
+script = ExtResource("5_lsehn")
+
+[node name="MainMenu" type="MarginContainer" parent="MainMenuContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuContainer/MainMenu"]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 62
+text = "Molecule1
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 350
+
+[node name="StartButton" type="Button" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_eas64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5nown")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_axwpy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bde7w")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6kpdn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1rrfj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_hrliu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_oyt74")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iekjq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0wcw3")
+text = "Start"
+alignment = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Options Button" type="Button" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mkab1")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_eas64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5nown")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_axwpy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bde7w")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6kpdn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1rrfj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_hrliu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_oyt74")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iekjq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0wcw3")
+text = "Options
+"
+alignment = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="QuitButton" type="Button" parent="MainMenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_eas64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5nown")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_axwpy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bde7w")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6kpdn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1rrfj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_hrliu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_oyt74")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iekjq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0wcw3")
+text = "Quit"
+alignment = 0
+
+[node name="OptionMenu" type="MarginContainer" parent="MainMenuContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuContainer/OptionMenu"]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="MoleculeLabel" type="Label" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 62
+text = "Molecule1
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 150
+
+[node name="Options Label" type="Label" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "Options
+"
+script = ExtResource("6_0piwa")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="MainMenuContainer/OptionMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Music
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuContainer/OptionMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+
+[node name="MusicOnOffButton" type="Button" parent="MainMenuContainer/OptionMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mkab1")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_eas64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5nown")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_axwpy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bde7w")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6kpdn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1rrfj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_hrliu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_oyt74")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iekjq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0wcw3")
+text = "< ON >
+"
+alignment = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 320
+
+[node name="TipLabel" type="Label" parent="MainMenuContainer/OptionMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Press ESC to go back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_dvhxk")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MainMenuContainer"]
+stream = ExtResource("7_qh2kd")
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="MainMenuContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MoleculeLabel" type="Label" parent="MainMenuContainer/ColorRect"]
+custom_minimum_size = Vector2(0, -50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -43.0
+offset_right = 153.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/font_size = 62
+text = "Molecule1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MainMenuContainer/MainMenu/VBoxContainer/StartButton" to="MainMenuContainer" method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenuContainer/MainMenu/VBoxContainer/Options Button" to="MainMenuContainer" method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenuContainer/MainMenu/VBoxContainer/QuitButton" to="MainMenuContainer" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainMenuContainer/OptionMenu/VBoxContainer/HBoxContainer/MusicOnOffButton" to="MainMenuContainer" method="_on_music_on_off_button_pressed"]

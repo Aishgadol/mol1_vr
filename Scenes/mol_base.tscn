@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfjs7isbwhnin"]
+
+[ext_resource type="Script" path="res://Scripts/molecule.gd" id="1_q2x0a"]
+
+[node name="Mol" type="Node3D" groups=["grabbable", "mergeable"]]
+script = ExtResource("1_q2x0a")
