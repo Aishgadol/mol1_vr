@@ -511,6 +511,7 @@ text = "Back
 alignment = 0
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 82.0
 offset_top = 51.0
 offset_right = 389.0

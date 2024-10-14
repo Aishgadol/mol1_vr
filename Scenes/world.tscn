@@ -235,6 +235,10 @@ visible = false
 
 [node name="Label" parent="PauseMenu" index="5"]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 307.0
+offset_bottom = 86.0
 
 [node name="EntityManager" type="Node" parent="."]
 script = ExtResource("7_7ladw")
