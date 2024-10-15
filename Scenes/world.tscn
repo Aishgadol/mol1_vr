@@ -234,7 +234,6 @@ mesh = SubResource("SphereMesh_g0hb2")
 visible = false
 
 [node name="Label" parent="PauseMenu" index="5"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 307.0

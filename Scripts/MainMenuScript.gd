@@ -7,6 +7,7 @@ extends Control
 @onready var vBox=$MainMenu/VBoxContainer
 @onready var colorRect=$ColorRect
 
+
 var musicOn=true;
 var way = 1
 

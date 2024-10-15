@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjo3vy4svoear"]
+[gd_scene load_steps=14 format=3 uid="uid://cjo3vy4svoear"]
 
 [ext_resource type="Script" path="res://Scripts/EntityManager.gd" id="1_shvmo"]
 [ext_resource type="Texture2D" uid="uid://crpj7dsr7xqyu" path="res://Textures/AllSky_Space_AnotherPlanet Equirect.png" id="2_8bbng"]
 [ext_resource type="Texture2D" uid="uid://d3qoet7kbkvxj" path="res://Textures/woodfloor.jpg" id="3_s1k5x"]
+[ext_resource type="PackedScene" uid="uid://m5hdvxncqiid" path="res://Scenes/new_player.tscn" id="5_35bxs"]
 [ext_resource type="PackedScene" uid="uid://bfjs7isbwhnin" path="res://Scenes/mol_base.tscn" id="7_btm2a"]
 [ext_resource type="Script" path="res://Scripts/DocumentManager.gd" id="9_suwk8"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="10_b73am"]
@@ -49,6 +50,8 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="EntityManager/Root/World"]
 environment = SubResource("Environment_vagyq")
+
+[node name="NewPlayer" parent="EntityManager/Root/World" instance=ExtResource("5_35bxs")]
 
 [node name="Player" parent="EntityManager/Root/World" instance=ExtResource("11_wdln3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
@@ -124,5 +127,6 @@ offset_bottom = 86.0
 
 [connection signal="pressed" from="EntityManager/Root/PauseMenu/MainPauseMenu/VBoxContainer/BackToMainButton2" to="EntityManager/Root" method="_on_back_to_main_button_pressed"]
 
+[editable path="EntityManager/Root/World/NewPlayer"]
 [editable path="EntityManager/Root/World/Player"]
 [editable path="EntityManager/Root/PauseMenu"]

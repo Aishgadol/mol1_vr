@@ -3,20 +3,53 @@ extends Node
 
 @onready var entityManager:EntityManager=$EntityManager
 
+@export var max_refresh_rate:int=90
+
 var myCall:Callable=Callable(self, "_on_file_selected")
 var file_dialog: FileDialog=null
 var working_with:String=""
 var loaded_info:String=""
 var content_load_error:bool=false
+var xr_interface:XRInterface
+var xr_is_focused=false
+
 signal file_dialog_done
 signal done_reading_from_files
+signal focus_lost
+signal focus_gained
+signal pose_recentered
+
+
 
 var last_selected_filename:String=""
 var script_path:String
 var script_path_global:String
 
 func _ready()->void:
-	pass
+	xr_interface=XRServer.find_interface("OpenXR")
+	if xr_interface and xr_interface.initialize():
+		print("OpenXR Interface initiatied succesfully")
+		#disable vsync cuz vsync is handled by openxr
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		var vp:Viewport=get_viewport()
+		#enable xr on viewport
+		vp.use_xr=true
+	#enable vrs
+		if RenderingServer.get_rendering_device():
+			vp.vrs_mode=Viewport.VRS_XR
+		elif int(ProjectSettings.get_setting("xr/openxr/foveation_level"))==0:
+			push_warning("OpenXR: recommend setting foveation level to high in project settings..")
+		
+		#connect the default OpenXR events
+		xr_interface.session_begun.connect(_on_openxr_session_begun)
+		xr_interface.session_visible.connect(_on_openxr_visible_state)
+		xr_interface.session_focussed.connect(_on_openxr_focused_state)
+		xr_interface.session_stopping.connect(_on_openxr_stopping)
+		xr_interface.pose_recentered.connect(_on_openxr_pose_recentered)
+	else:
+		#OpenXR didnt open
+		print("OpenXR not instantiated")
+		get_tree().quit()
 		
 func run()->void:
 	print("okay lets go doc mgr")
@@ -401,3 +434,85 @@ func _on_export_file_selected(file_path:String, xyz_string:String,zmat_string:St
 	
 	print("Files saved: \n%s\n%s" % [xyz_file_path, zmat_file_path])
 	
+#handle openxr session ready
+func _on_openxr_session_begun()->void:
+	# Get the reported refresh rate
+	var current_refresh_rate = xr_interface.get_display_refresh_rate()
+	if current_refresh_rate > 0:
+		print("OpenXR: Refresh rate reported as ", str(current_refresh_rate))
+	else:
+		print("OpenXR: No refresh rate given by XR runtime")
+
+	# See if we have a better refresh rate available
+	var new_rate = current_refresh_rate
+	var available_rates : Array = xr_interface.get_available_display_refresh_rates()
+	if available_rates.size() == 0:
+		print("OpenXR: Target does not support refresh rate extension")
+	elif available_rates.size() == 1:
+		# Only one available, so use it
+		new_rate = available_rates[0]
+	else:
+		for rate in available_rates:
+			if rate > new_rate and rate <= max_refresh_rate:
+				new_rate = rate
+
+	# Did we find a better rate?
+	if current_refresh_rate != new_rate:
+		print("OpenXR: Setting refresh rate to ", str(new_rate))
+		xr_interface.set_display_refresh_rate(new_rate)
+		current_refresh_rate = new_rate
+
+	# Now match our physics rate
+	Engine.physics_ticks_per_second = current_refresh_rate
+	
+	
+# Handle OpenXR visible state
+#this state means that our game has just started and we're about 
+#to switch to the focussed state next, that the user has opened a system menu
+# or the users has just took their headset off.
+func _on_openxr_visible_state() -> void:
+	# We always pass this state at startup,
+	# but the second time we get this it means our player took off their headset
+	if xr_is_focused:
+		print("OpenXR lost focus")
+
+		xr_is_focused = false
+
+		# pause our game
+		get_tree().paused = true
+
+		emit_signal("focus_lost")
+		
+		
+# This signal is emitted by OpenXR when our game gets focus.
+# This is done at the completion of our startup, but it can also be emitted
+# when the user exits a system menu, or put their headset back on.
+# While handling our signal we will update the focusses state,
+# unpause our node and emit our focus_gained signal.
+func _on_openxr_focused_state() -> void:
+	print("OpenXR gained focus")
+	xr_is_focused = true
+
+	# unpause our game
+	get_tree().paused = false
+
+	emit_signal("focus_gained")
+	
+	
+	
+# On some platforms this is only emitted when the game is being closed.
+# But on other platforms this will also be emitted every time the player 
+# takes off their headset.
+#
+# For now this method is only a place holder.
+func _on_openxr_stopping() -> void:
+	# Our session is being stopped.
+	print("OpenXR is stopping")
+	
+# All we do here is emit the pose_recentered signal.
+# You can connect to this signal and implement the actual recenter code.
+# Often it is enough to call center_on_hmd().
+func _on_openxr_pose_recentered() -> void:
+	# User recentered view, we have to react to this by recentering the view.
+	# This is game implementation dependent.
+	emit_signal("pose_recentered")
