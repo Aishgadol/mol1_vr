@@ -5,32 +5,32 @@
 [ext_resource type="Texture2D" uid="uid://b4ldce00l8c0i" path="res://Textures/icon.svg" id="2_rdcmx"]
 [ext_resource type="Texture2D" uid="uid://c0731ueo82ryt" path="res://Textures/crosshair.png" id="3_bfmlq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhlla"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjti4"]
 albedo_texture = ExtResource("2_rdcmx")
 
 [sub_resource type="SphereMesh" id="SphereMesh_k15b5"]
-material = SubResource("StandardMaterial3D_hhlla")
+material = SubResource("StandardMaterial3D_mjti4")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38n36"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v0v7"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_qkyll"]
-material = SubResource("StandardMaterial3D_38n36")
+material = SubResource("StandardMaterial3D_7v0v7")
 radius = 0.14
 height = 0.28
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f223n"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brchy"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2yf5l"]
-material = SubResource("StandardMaterial3D_f223n")
+material = SubResource("StandardMaterial3D_brchy")
 radius = 0.1
 height = 0.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulrpi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7db20"]
 albedo_color = Color(0.416754, 8.48304e-07, 2.16588e-07, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dr8x8"]
-material = SubResource("StandardMaterial3D_ulrpi")
+material = SubResource("StandardMaterial3D_7db20")
 radius = 0.05
 height = 0.75
 
@@ -92,3 +92,4 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_bfmlq")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true

@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjo3vy4svoear"]
+[gd_scene load_steps=15 format=3 uid="uid://cjo3vy4svoear"]
 
 [ext_resource type="Script" path="res://Scripts/EntityManager.gd" id="1_shvmo"]
 [ext_resource type="Texture2D" uid="uid://crpj7dsr7xqyu" path="res://Textures/AllSky_Space_AnotherPlanet Equirect.png" id="2_8bbng"]
 [ext_resource type="Texture2D" uid="uid://d3qoet7kbkvxj" path="res://Textures/woodfloor.jpg" id="3_s1k5x"]
-[ext_resource type="PackedScene" uid="uid://m5hdvxncqiid" path="res://Scenes/new_player.tscn" id="5_35bxs"]
 [ext_resource type="PackedScene" uid="uid://bfjs7isbwhnin" path="res://Scenes/mol_base.tscn" id="7_btm2a"]
 [ext_resource type="Script" path="res://Scripts/DocumentManager.gd" id="9_suwk8"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="10_b73am"]
@@ -23,6 +22,12 @@ sky = SubResource("Sky_i7dvd")
 sky_rotation = Vector3(3.14159, 0.610865, 0)
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_6slqv"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_07q7l"]
+size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v74qw"]
 albedo_color = Color(0.830335, 0.830335, 0.830335, 1)
@@ -51,7 +56,26 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="EntityManager/Root/World"]
 environment = SubResource("Environment_vagyq")
 
-[node name="NewPlayer" parent="EntityManager/Root/World" instance=ExtResource("5_35bxs")]
+[node name="NewPlayer" type="Node3D" parent="EntityManager/Root/World"]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="EntityManager/Root/World/NewPlayer"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="EntityManager/Root/World/NewPlayer/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+
+[node name="LeftHand" type="XRController3D" parent="EntityManager/Root/World/NewPlayer/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EntityManager/Root/World/NewPlayer/XROrigin3D/LeftHand"]
+mesh = SubResource("BoxMesh_6slqv")
+
+[node name="RightHand" type="XRController3D" parent="EntityManager/Root/World/NewPlayer/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EntityManager/Root/World/NewPlayer/XROrigin3D/RightHand"]
+mesh = SubResource("BoxMesh_07q7l")
 
 [node name="Player" parent="EntityManager/Root/World" instance=ExtResource("11_wdln3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
@@ -127,6 +151,5 @@ offset_bottom = 86.0
 
 [connection signal="pressed" from="EntityManager/Root/PauseMenu/MainPauseMenu/VBoxContainer/BackToMainButton2" to="EntityManager/Root" method="_on_back_to_main_button_pressed"]
 
-[editable path="EntityManager/Root/World/NewPlayer"]
 [editable path="EntityManager/Root/World/Player"]
 [editable path="EntityManager/Root/PauseMenu"]

@@ -1,28 +1,122 @@
-[gd_scene load_steps=3 format=3 uid="uid://m5hdvxncqiid"]
+[gd_scene load_steps=17 format=3 uid="uid://m5hdvxncqiid"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_6slqv"]
-size = Vector3(0.1, 0.1, 0.1)
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_atwiq"]
+[ext_resource type="Texture2D" uid="uid://b4ldce00l8c0i" path="res://Textures/icon.svg" id="2_ccu0r"]
+[ext_resource type="Texture2D" uid="uid://c0731ueo82ryt" path="res://Textures/crosshair.png" id="3_sldpq"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_5ysx2"]
+[ext_resource type="Script" path="res://Scripts/RightHand.gd" id="4_n66cp"]
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="5_62uu6"]
+[ext_resource type="Script" path="res://Scripts/LeftHand.gd" id="6_j60c6"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_07q7l"]
-size = Vector3(0.1, 0.1, 0.1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2afx6"]
+albedo_texture = ExtResource("2_ccu0r")
 
-[node name="NewPlayer" type="Node3D"]
+[sub_resource type="SphereMesh" id="SphereMesh_lymmx"]
+material = SubResource("StandardMaterial3D_2afx6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_syfy3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ptetu"]
+material = SubResource("StandardMaterial3D_syfy3")
+radius = 0.14
+height = 0.28
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3h0vt"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4rnac"]
+material = SubResource("StandardMaterial3D_3h0vt")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o65s5"]
+albedo_color = Color(0.416754, 8.48304e-07, 2.16588e-07, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pka55"]
+material = SubResource("StandardMaterial3D_o65s5")
+radius = 0.05
+height = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_xcae7"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="NewPlayer" type="CharacterBody3D"]
+script = ExtResource("1_atwiq")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
-[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
-tracker = &"left_hand"
+[node name="Head" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D"]
+transform = Transform3D(3, 0, 1.78814e-07, 0, 3, 0, -1.78814e-07, 0, 3, 0, 0, 1.7271)
+mesh = SubResource("SphereMesh_lymmx")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftHand"]
-mesh = SubResource("BoxMesh_6slqv")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.343143, -0.0200642, -0.269484)
+mesh = SubResource("SphereMesh_ptetu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/Head/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106237, 7.45058e-09, -0.0671583)
+mesh = SubResource("SphereMesh_4rnac")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.345296, -0.0178761, -0.268337)
+mesh = SubResource("SphereMesh_ptetu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/Head/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0246025, 7.45058e-09, -0.0671583)
+mesh = SubResource("SphereMesh_4rnac")
+
+[node name="NOSE" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/Head"]
+transform = Transform3D(1, 7.10543e-15, 0, 0, -4.37114e-08, -1, -7.10543e-15, 1, -4.37114e-08, -9.29062e-09, 0, -0.172266)
+layers = 7
+mesh = SubResource("CapsuleMesh_pka55")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="XROrigin3D/XRCamera3D"]
+layer = 3
+
+[node name="TextureRect" type="TextureRect" parent="XROrigin3D/XRCamera3D/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_sldpq")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="RightHand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.5, 1, -1)
 tracker = &"right_hand"
+script = ExtResource("4_n66cp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
-mesh = SubResource("BoxMesh_07q7l")
+[node name="RightHand" parent="XROrigin3D/RightHand" instance=ExtResource("4_5ysx2")]
+
+[node name="RightBox" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0196116, -0.282685)
+visible = false
+mesh = SubResource("BoxMesh_xcae7")
+
+[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.5, 1, -1)
+tracker = &"left_hand"
+script = ExtResource("6_j60c6")
+
+[node name="LeftHand" parent="XROrigin3D/LeftHand" instance=ExtResource("5_62uu6")]
+
+[node name="LeftBox" type="MeshInstance3D" parent="XROrigin3D/LeftHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0196116, -0.282685)
+visible = false
+mesh = SubResource("BoxMesh_xcae7")
+
+[connection signal="button_pressed" from="XROrigin3D/RightHand" to="XROrigin3D/RightHand" method="_on_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/LeftHand" to="XROrigin3D/LeftHand" method="_on_button_pressed"]

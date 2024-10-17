@@ -1,11 +1,11 @@
 extends Node3D
 
 @onready var pause_menu=$PauseMenu
-@onready var player=$World/Player
-@onready var camera = $World/Player/PlayerCamera
+@onready var player=$World/NewPlayer
+@onready var camera = $World/NewPlayer/XROrigin3D/XRCamera3D
 @onready var level=$World/Level
 @onready var floor=$World/Level/Floor/CSGCylinder3D
-@onready var crosshair=$World/Player/CanvasLayer/TextureRect
+@onready var crosshair=$World/NewPlayer/XROrigin3D/XRCamera3D/CanvasLayer/TextureRect
 @onready var going_back=false
 @export var doc_mgr_script :Resource=preload("res://Scripts/DocumentManager.gd")
 @onready var explosion_scene:PackedScene =preload("res://Scenes/vfx_explosion.tscn")
@@ -17,10 +17,10 @@ var fileExplorerDisplaying:bool=false
 var allowed_spawn:bool =true
 
 func _ready() ->void:
-	camera.set_root(self)
+	#  camera.set_root(self)
 	print("okay lets go world")
-	crosshair.visible=true
-	camera.rotation_degrees=Vector3(45,105,0)
+	#crosshair.visible=true
+	#   camera.rotation_degrees=Vector3(45,105,0)
 	
 	
 	

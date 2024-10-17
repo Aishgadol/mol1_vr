@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var deacceleration: float = 10.0
 @export var bobbing_amplitude: float = 0.10  # Reduced amplitude for less noticeable bobbing
 @export var bobbing_speed: float = 12.0  # Slightly faster bobbing
-@onready var crosshair = $CanvasLayer/TextureRect
+@onready var crosshair = $XROrigin3D/XRCamera3D/CanvasLayer/TextureRect
 # Movement variables
 var is_sprinting: bool = false
 
@@ -22,7 +22,7 @@ var camera: Camera3D = null  # Reference to the camera for movement direction
 
 func _ready():
 	# Find the Camera3D node
-	camera = $PlayerCamera  # Adjust this path if the hierarchy is different
+	camera = $XROrigin3D/XRCamera3D  # Adjust this path if the hierarchy is different
 	original_camera_height = camera.position.y  # Store the initial camera height for bobbing
 	crosshair.visible=false
 	# Store the player's starting height (Y-axis)

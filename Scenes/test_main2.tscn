@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1qo1yitdjnyf"]
+
+[ext_resource type="Script" path="res://Scripts/DocumentManager.gd" id="1_qrxva"]
+[ext_resource type="Script" path="res://Scripts/EntityManager.gd" id="2_r3wl3"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="3_sgjxp"]
+[ext_resource type="Texture2D" uid="uid://crpj7dsr7xqyu" path="res://Textures/AllSky_Space_AnotherPlanet Equirect.png" id="4_7fo8r"]
+[ext_resource type="PackedScene" uid="uid://m5hdvxncqiid" path="res://Scenes/new_player.tscn" id="4_dac1v"]
+[ext_resource type="Texture2D" uid="uid://d3qoet7kbkvxj" path="res://Textures/woodfloor.jpg" id="7_vlab6"]
+[ext_resource type="PackedScene" uid="uid://bfjs7isbwhnin" path="res://Scenes/mol_base.tscn" id="8_47ku7"]
+[ext_resource type="PackedScene" uid="uid://p42ftxav826i" path="res://Scenes/pause_menu.tscn" id="9_q3j0y"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0ivgh"]
+panorama = ExtResource("4_7fo8r")
+
+[sub_resource type="Sky" id="Sky_i7dvd"]
+sky_material = SubResource("PanoramaSkyMaterial_0ivgh")
+radiance_size = 1
+
+[sub_resource type="Environment" id="Environment_vagyq"]
+background_mode = 2
+sky = SubResource("Sky_i7dvd")
+sky_rotation = Vector3(3.14159, 0.610865, 0)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v74qw"]
+albedo_color = Color(0.830335, 0.830335, 0.830335, 1)
+albedo_texture = ExtResource("7_vlab6")
+albedo_texture_force_srgb = true
+metallic = 0.25
+metallic_texture_channel = 1
+roughness = 0.5
+uv1_scale = Vector3(10, 10, 10)
+
+[node name="DocumentManager" type="Node"]
+script = ExtResource("1_qrxva")
+
+[node name="EntityManager" type="Node" parent="."]
+script = ExtResource("2_r3wl3")
+
+[node name="Root" type="Node3D" parent="EntityManager"]
+script = ExtResource("3_sgjxp")
+
+[node name="World" type="Node3D" parent="EntityManager/Root"]
+
+[node name="NewPlayer" parent="EntityManager/Root/World" instance=ExtResource("4_dac1v")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="EntityManager/Root/World"]
+transform = Transform3D(-0.900852, -0.424295, 0.0918705, 0.142212, -0.0884743, 0.985874, -0.410173, 0.901191, 0.140042, -1883.92, 204.714, -2795.83)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="EntityManager/Root/World"]
+environment = SubResource("Environment_vagyq")
+
+[node name="Level" type="Node3D" parent="EntityManager/Root/World"]
+
+[node name="Floor" type="Node3D" parent="EntityManager/Root/World/Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="EntityManager/Root/World/Level/Floor"]
+radius = 250.0
+height = 0.1
+sides = 64
+material = SubResource("StandardMaterial3D_v74qw")
+
+[node name="Spotlights" type="Node3D" parent="EntityManager/Root/World/Level"]
+transform = Transform3D(11.3172, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="EntityManager/Root/World/Level/Spotlights"]
+transform = Transform3D(0.088361, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0.0378598, 82.0451, -1.20378)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 1.0
+light_specular = 0.0
+spot_range = 300.0
+spot_angle = 61.5
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="EntityManager/Root/World/Level/Spotlights"]
+transform = Transform3D(0.088361, 0, 0, 0, 6.5567e-08, -0.5, 0, 0.5, 6.5567e-08, 0, -76.7932, 0)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 350.0
+spot_angle = 61.5
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="EntityManager/Root/World/Level/Spotlights"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 44, 176)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 200.0
+spot_angle = 61.5
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="EntityManager/Root/World/Level/Spotlights"]
+transform = Transform3D(0.088361, 0, 0, 0, -0.5, -1.41561e-07, 0, 1.41561e-07, -0.5, 0, 44, -175.254)
+light_color = Color(0.924879, 0.677451, 0.401764, 1)
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_size = 0.884
+light_specular = 0.0
+spot_range = 200.0
+spot_angle = 61.5
+
+[node name="mol_base" parent="EntityManager/Root/World/Level" instance=ExtResource("8_47ku7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 999, 999, 999)
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="EntityManager/Root/World"]
+
+[node name="PauseMenu" parent="EntityManager/Root" instance=ExtResource("9_q3j0y")]
+visible = false
+
+[node name="Label" parent="EntityManager/Root/PauseMenu" index="5"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 307.0
+offset_bottom = 86.0
+
+[connection signal="pressed" from="EntityManager/Root/PauseMenu/MainPauseMenu/VBoxContainer/BackToMainButton2" to="EntityManager/Root" method="_on_back_to_main_button_pressed"]
+
+[editable path="EntityManager/Root/World/NewPlayer"]
+[editable path="EntityManager/Root/PauseMenu"]
