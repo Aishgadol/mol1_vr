@@ -15,10 +15,11 @@ var xr_is_focused=false
 
 signal file_dialog_done
 signal done_reading_from_files
+'''
 signal focus_lost
 signal focus_gained
 signal pose_recentered
-
+'''
 
 
 var last_selected_filename:String=""
@@ -26,7 +27,7 @@ var script_path:String
 var script_path_global:String
 
 func _ready()->void:
-	xr_interface=XRServer.find_interface("OpenXR")
+	'''xr_interface=XRServer.find_interface("OpenXR")
 	if xr_interface and xr_interface.initialize():
 		print("OpenXR Interface initiatied succesfully")
 		#disable vsync cuz vsync is handled by openxr
@@ -50,7 +51,7 @@ func _ready()->void:
 		#OpenXR didnt open
 		print("OpenXR not instantiated")
 		get_tree().quit()
-		
+		'''
 func run()->void:
 	print("okay lets go doc mgr")
 	script_path = "res://gc.py"
@@ -61,6 +62,8 @@ func run()->void:
 		print("Python script 'gc.py' found at path: %s" % script_path_global)
 		
 func _process(delta:float):
+	if Input.is_action_just_pressed("ax_button"):
+		print("ax pressed")
 	if Input.is_action_just_pressed("importZmat"):
 		script_path = "res://gc.py"
 		script_path_global = ProjectSettings.globalize_path(script_path)
@@ -435,7 +438,7 @@ func _on_export_file_selected(file_path:String, xyz_string:String,zmat_string:St
 	print("Files saved: \n%s\n%s" % [xyz_file_path, zmat_file_path])
 	
 #handle openxr session ready
-func _on_openxr_session_begun()->void:
+'''func _on_openxr_session_begun()->void:
 	# Get the reported refresh rate
 	var current_refresh_rate = xr_interface.get_display_refresh_rate()
 	if current_refresh_rate > 0:
@@ -515,4 +518,4 @@ func _on_openxr_stopping() -> void:
 func _on_openxr_pose_recentered() -> void:
 	# User recentered view, we have to react to this by recentering the view.
 	# This is game implementation dependent.
-	emit_signal("pose_recentered")
+	emit_signal("pose_recentered")'''

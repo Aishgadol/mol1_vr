@@ -39,10 +39,6 @@ import/blender/enabled=false
 grabbable="objects u can grab"
 mergeable="all objects that are mergeable in the world"
 
-[godot_xr_tools]
-
-player/standard_height=1.75
-
 [input]
 
 pause={
@@ -56,6 +52,10 @@ shift={
 ]
 }
 importZmat={
+"deadzone": 0.5,
+"events": []
+}
+menu_button={
 "deadzone": 0.5,
 "events": []
 }
