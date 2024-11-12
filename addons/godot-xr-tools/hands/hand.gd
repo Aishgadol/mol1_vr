@@ -127,6 +127,7 @@ func _ready() -> void:
 	# Find our controller
 	_controller = XRTools.find_xr_ancestor(self, "*", "XRController3D")
 
+
 	# Find the relevant hand nodes
 	_hand_mesh = _find_child(self, "MeshInstance3D")
 	_animation_player = _find_child(self, "AnimationPlayer")
