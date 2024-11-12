@@ -116,3 +116,6 @@ func get_grabbed_object():
 func set_root(root):
 	self.root=root
 	return
+
+func this_and_that(useless):
+	print("this will never happen")
